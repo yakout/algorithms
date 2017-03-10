@@ -2,4 +2,4 @@ language: cpp
 compiler:
     - clang
 script:
-    - make
+    - cmake --build ./cmake-build-debug --target algorithms -- -j 4
