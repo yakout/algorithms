@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/Heap.h
+iostream
+-
+vector
+-
+
+/Users/nesmayakout/CLionProjects/algorithms/src/Heap.cpp
+iostream
+-
+vector
+-
+Heap.h
+/Users/nesmayakout/CLionProjects/algorithms/src/Heap.h
+
