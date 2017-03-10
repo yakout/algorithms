@@ -23,6 +23,7 @@ int main(int argc, char *argv[]) {
     cout << "Hello, World!" << endl;
     algo::Heap<int> heap1;
     heap1.build_max_heap(vector<int>{4, 1, 3, 2, 16, 9, 10, 14, 8, 7});
+    heap1.sort();
     heap1.print_heap();
     return 0;
 }

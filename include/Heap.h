@@ -25,6 +25,11 @@ namespace algo {
 
             inline T right(int i) { return (i << 1) + 2; }
 
+            /**
+             * swap element at index i with element at index j.
+             * @param i
+             * @param j
+             */
             inline void swap(int i, int j) {
                 __heap[i] ^= __heap[j];
                 __heap[j] ^= __heap[i];
@@ -43,7 +48,6 @@ namespace algo {
                 int greatest = i;
                 int left_child = left(i);
                 int right_child = right(i);
-                printf("i = %d, right = %d, left = %d\n", i, right_child, left_child);
                 if (left_child < heap_size && __heap[i] < __heap[left_child]) {
                     greatest = left_child;
                 }
@@ -69,7 +73,16 @@ namespace algo {
                 }
             }
 
-            void push(T element) {
+            /**
+             * sorting array with heapsort algorithm
+             */
+            void sort() {
+                for (int i = (int) (__heap.size() - 1); i > 0; i--) {
+                    swap(0, i);
+                    heap_size--;
+                    max_heapify(0);
+                }
+                heap_size = (int) __heap.size();
             }
 
             /**
