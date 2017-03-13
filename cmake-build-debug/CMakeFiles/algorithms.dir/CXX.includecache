@@ -6,17 +6,37 @@
 
 #IncludeRegexTransform: 
 
-../include/Heap.h
+../include/bubble_sort.h
+
+../include/heap.h
 iostream
 -
 vector
+-
+string.h
 -
 
-/Users/nesmayakout/CLionProjects/algorithms/src/Heap.cpp
+../include/insertion_sort.h
+
+../include/merge_sort.h
+
+../include/selection_sort.h
+
+/Users/nesmayakout/CLionProjects/algorithms/src/test.cpp
 iostream
 -
 vector
 -
-Heap.h
-/Users/nesmayakout/CLionProjects/algorithms/src/Heap.h
+heap.h
+/Users/nesmayakout/CLionProjects/algorithms/src/heap.h
+bubble_sort.h
+/Users/nesmayakout/CLionProjects/algorithms/src/bubble_sort.h
+merge_sort.h
+/Users/nesmayakout/CLionProjects/algorithms/src/merge_sort.h
+insertion_sort.h
+/Users/nesmayakout/CLionProjects/algorithms/src/insertion_sort.h
+selection_sort.h
+/Users/nesmayakout/CLionProjects/algorithms/src/selection_sort.h
+chrono
+-
 

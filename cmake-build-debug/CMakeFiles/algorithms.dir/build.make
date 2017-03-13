@@ -57,38 +57,38 @@ include CMakeFiles/algorithms.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/algorithms.dir/flags.make
 
-CMakeFiles/algorithms.dir/src/Heap.cpp.o: CMakeFiles/algorithms.dir/flags.make
-CMakeFiles/algorithms.dir/src/Heap.cpp.o: ../src/Heap.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/nesmayakout/CLionProjects/algorithms/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/algorithms.dir/src/Heap.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/algorithms.dir/src/Heap.cpp.o -c /Users/nesmayakout/CLionProjects/algorithms/src/Heap.cpp
+CMakeFiles/algorithms.dir/src/test.cpp.o: CMakeFiles/algorithms.dir/flags.make
+CMakeFiles/algorithms.dir/src/test.cpp.o: ../src/test.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/nesmayakout/CLionProjects/algorithms/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/algorithms.dir/src/test.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/algorithms.dir/src/test.cpp.o -c /Users/nesmayakout/CLionProjects/algorithms/src/test.cpp
 
-CMakeFiles/algorithms.dir/src/Heap.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/algorithms.dir/src/Heap.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nesmayakout/CLionProjects/algorithms/src/Heap.cpp > CMakeFiles/algorithms.dir/src/Heap.cpp.i
+CMakeFiles/algorithms.dir/src/test.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/algorithms.dir/src/test.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nesmayakout/CLionProjects/algorithms/src/test.cpp > CMakeFiles/algorithms.dir/src/test.cpp.i
 
-CMakeFiles/algorithms.dir/src/Heap.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/algorithms.dir/src/Heap.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nesmayakout/CLionProjects/algorithms/src/Heap.cpp -o CMakeFiles/algorithms.dir/src/Heap.cpp.s
+CMakeFiles/algorithms.dir/src/test.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/algorithms.dir/src/test.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nesmayakout/CLionProjects/algorithms/src/test.cpp -o CMakeFiles/algorithms.dir/src/test.cpp.s
 
-CMakeFiles/algorithms.dir/src/Heap.cpp.o.requires:
+CMakeFiles/algorithms.dir/src/test.cpp.o.requires:
 
-.PHONY : CMakeFiles/algorithms.dir/src/Heap.cpp.o.requires
+.PHONY : CMakeFiles/algorithms.dir/src/test.cpp.o.requires
 
-CMakeFiles/algorithms.dir/src/Heap.cpp.o.provides: CMakeFiles/algorithms.dir/src/Heap.cpp.o.requires
-	$(MAKE) -f CMakeFiles/algorithms.dir/build.make CMakeFiles/algorithms.dir/src/Heap.cpp.o.provides.build
-.PHONY : CMakeFiles/algorithms.dir/src/Heap.cpp.o.provides
+CMakeFiles/algorithms.dir/src/test.cpp.o.provides: CMakeFiles/algorithms.dir/src/test.cpp.o.requires
+	$(MAKE) -f CMakeFiles/algorithms.dir/build.make CMakeFiles/algorithms.dir/src/test.cpp.o.provides.build
+.PHONY : CMakeFiles/algorithms.dir/src/test.cpp.o.provides
 
-CMakeFiles/algorithms.dir/src/Heap.cpp.o.provides.build: CMakeFiles/algorithms.dir/src/Heap.cpp.o
+CMakeFiles/algorithms.dir/src/test.cpp.o.provides.build: CMakeFiles/algorithms.dir/src/test.cpp.o
 
 
 # Object files for target algorithms
 algorithms_OBJECTS = \
-"CMakeFiles/algorithms.dir/src/Heap.cpp.o"
+"CMakeFiles/algorithms.dir/src/test.cpp.o"
 
 # External object files for target algorithms
 algorithms_EXTERNAL_OBJECTS =
 
-algorithms: CMakeFiles/algorithms.dir/src/Heap.cpp.o
+algorithms: CMakeFiles/algorithms.dir/src/test.cpp.o
 algorithms: CMakeFiles/algorithms.dir/build.make
 algorithms: CMakeFiles/algorithms.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/nesmayakout/CLionProjects/algorithms/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable algorithms"
@@ -99,7 +99,7 @@ CMakeFiles/algorithms.dir/build: algorithms
 
 .PHONY : CMakeFiles/algorithms.dir/build
 
-CMakeFiles/algorithms.dir/requires: CMakeFiles/algorithms.dir/src/Heap.cpp.o.requires
+CMakeFiles/algorithms.dir/requires: CMakeFiles/algorithms.dir/src/test.cpp.o.requires
 
 .PHONY : CMakeFiles/algorithms.dir/requires
 

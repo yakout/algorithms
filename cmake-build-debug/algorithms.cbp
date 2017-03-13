@@ -82,10 +82,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/nesmayakout/CLionProjects/algorithms/include/Heap.h">
-			<Option target="algorithms"/>
-		</Unit>
-		<Unit filename="/Users/nesmayakout/CLionProjects/algorithms/src/Heap.cpp">
+		<Unit filename="/Users/nesmayakout/CLionProjects/algorithms/src/test.cpp">
 			<Option target="algorithms"/>
 		</Unit>
 		<Unit filename="/Users/nesmayakout/CLionProjects/algorithms/CMakeLists.txt">

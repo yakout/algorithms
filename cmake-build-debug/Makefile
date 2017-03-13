@@ -123,32 +123,32 @@ algorithms/fast:
 	$(MAKE) -f CMakeFiles/algorithms.dir/build.make CMakeFiles/algorithms.dir/build
 .PHONY : algorithms/fast
 
-src/Heap.o: src/Heap.cpp.o
+src/test.o: src/test.cpp.o
 
-.PHONY : src/Heap.o
+.PHONY : src/test.o
 
 # target to build an object file
-src/Heap.cpp.o:
-	$(MAKE) -f CMakeFiles/algorithms.dir/build.make CMakeFiles/algorithms.dir/src/Heap.cpp.o
-.PHONY : src/Heap.cpp.o
+src/test.cpp.o:
+	$(MAKE) -f CMakeFiles/algorithms.dir/build.make CMakeFiles/algorithms.dir/src/test.cpp.o
+.PHONY : src/test.cpp.o
 
-src/Heap.i: src/Heap.cpp.i
+src/test.i: src/test.cpp.i
 
-.PHONY : src/Heap.i
+.PHONY : src/test.i
 
 # target to preprocess a source file
-src/Heap.cpp.i:
-	$(MAKE) -f CMakeFiles/algorithms.dir/build.make CMakeFiles/algorithms.dir/src/Heap.cpp.i
-.PHONY : src/Heap.cpp.i
+src/test.cpp.i:
+	$(MAKE) -f CMakeFiles/algorithms.dir/build.make CMakeFiles/algorithms.dir/src/test.cpp.i
+.PHONY : src/test.cpp.i
 
-src/Heap.s: src/Heap.cpp.s
+src/test.s: src/test.cpp.s
 
-.PHONY : src/Heap.s
+.PHONY : src/test.s
 
 # target to generate assembly for a file
-src/Heap.cpp.s:
-	$(MAKE) -f CMakeFiles/algorithms.dir/build.make CMakeFiles/algorithms.dir/src/Heap.cpp.s
-.PHONY : src/Heap.cpp.s
+src/test.cpp.s:
+	$(MAKE) -f CMakeFiles/algorithms.dir/build.make CMakeFiles/algorithms.dir/src/test.cpp.s
+.PHONY : src/test.cpp.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... algorithms"
-	@echo "... src/Heap.o"
-	@echo "... src/Heap.i"
-	@echo "... src/Heap.s"
+	@echo "... src/test.o"
+	@echo "... src/test.i"
+	@echo "... src/test.s"
 .PHONY : help
 
 
