@@ -11,6 +11,12 @@ namespace algo {
          */
         template<typename T>
         class Heap {
+
+            struct functor {
+
+
+            };
+
         private:
             int heap_size;
             int length;

@@ -82,6 +82,18 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/nesmayakout/CLionProjects/algorithms/include/avl_tree.h">
+			<Option target="algorithms"/>
+		</Unit>
+		<Unit filename="/Users/nesmayakout/CLionProjects/algorithms/include/dectionary.h">
+			<Option target="algorithms"/>
+		</Unit>
+		<Unit filename="/Users/nesmayakout/CLionProjects/algorithms/include/red_black_tree.h">
+			<Option target="algorithms"/>
+		</Unit>
+		<Unit filename="/Users/nesmayakout/CLionProjects/algorithms/include/utility.h">
+			<Option target="algorithms"/>
+		</Unit>
 		<Unit filename="/Users/nesmayakout/CLionProjects/algorithms/src/test.cpp">
 			<Option target="algorithms"/>
 		</Unit>

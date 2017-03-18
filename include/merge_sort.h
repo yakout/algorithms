@@ -28,7 +28,7 @@ namespace algo {
         while (right_pos <= right) temp.push_back(range[right_pos++]);
 
         // copy back the sorted array to the original one.
-        for (int i = 0; i < temp.size(); ++i) {
+	 for (int i = 0; i < temp.size(); ++i) {
             range[i + left] = temp[i];
         }
 
