@@ -10,24 +10,26 @@
 
 namespace algo {
     using namespace std;
-    static int partitioning(vector<int> &A, int p, int r) {
-        int pivot = A[r];
-        int i = p - 1;
-        for (int j = p; j <= r - 1; ++j) {
-            if (A[j] <= pivot) {
-                i++;
-                swap(A[j], A[i]);
+    template <typename random_access_itr>
+    static random_access_itr partitioning(random_access_itr p, random_access_itr r) {
+        random_access_itr pivot = r;
+        random_access_itr i = p - 1;
+        for (random_access_itr j = p; j <= (r - 1); ++j) {
+            if (*j < *pivot) {
+                i++;t
+                swap(*j, *i);
             }
         }
-        swap(A[i + 1], A[r]);
-        return i + 1;
+        swap(*(i + 1), *pivot);
+        return (i + 1);
     }
 
-    static void quick_sort(vector<int> &array, int p, int r) {
-        if (p < r) {
-            int q = partitioning(array, p, r);
-            quick_sort(array, q + 1, r);
-            quick_sort(array, p, q - 1);
+    template <typename random_access_itr>
+    static void quick_sort(random_access_itr left, random_access_itr right) {
+        if (distance(left, right) >= 1) {
+            random_access_itr q = partitioning(left, right);
+            quick_sort(q + 1, right);
+            quick_sort(left, q - 1);
         }
         return;
     }

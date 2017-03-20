@@ -2,7 +2,11 @@
 // Created by Ahmed Yakout on 3/19/17.
 //
 
-#ifndef ALGORITHMS_RED_BLACK_TREE_H
-#define ALGORITHMS_RED_BLACK_TREE_H
+#ifndef ALGORITHMS_RED_BLACK_TREE_H__
+#define ALGORITHMS_RED_BLACK_TREE_H__
 
-#endif //ALGORITHMS_RED_BLACK_TREE_H
+namespace algo {
+
+}
+
+#endif //ALGORITHMS_RED_BLACK_TREE_H__

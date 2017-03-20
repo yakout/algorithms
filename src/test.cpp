@@ -26,7 +26,7 @@ using namespace algo;
  * demo
  */
 int main(int argc, char *argv[]) {
-//    vector<int> v {3, 5, 9, 6, 8, 20, 10, 12, 18, 9};
+    vector<int> v {3, 5, 9, 6, 8, 20, 10, 12, 18, 9};
 ////    Heap<int> heap1;
 //    Heap<int> heap2(v);
 ////    heap1.build_max_heap(vector<int>{4, 1, 3, 2, 16, 9, 10, 14, 8, 7});
@@ -40,19 +40,19 @@ int main(int argc, char *argv[]) {
 //
 //
 //
-//    auto t1 = std::chrono::high_resolution_clock::now();
+    auto t11 = std::chrono::high_resolution_clock::now();
 ////    merge_sort(v, 0, v.size() - 1);
 //    selection_sort(v);
 ////    heap2.sort();
-////    quick_sort(v, 0, v.size() - 1);
-//    auto t2 = std::chrono::high_resolution_clock::now();
+    quick_sort(v.begin(), v.end() - 1);
+    auto t22 = std::chrono::high_resolution_clock::now();
 //
-//    auto diff = t2-t1;
+    auto diff1 = t22-t11;
 //
-//    for (int i = 0; i < v.size(); ++i) {
-//        cout << v[i] << endl;
-//    }
-//    cout << "time taken: " << diff.count() << endl;
+    for (int i = 0; i < v.size(); ++i) {
+        cout << v[i] << endl;
+    }
+    cout << "time taken: " << diff1.count() << endl;
 
     AVL<int> test;
 //    test.insert_key("g");
@@ -88,11 +88,15 @@ int main(int argc, char *argv[]) {
 
 
 //    test.to_string();
-    test.load_file("/Users/nesmayakout/CLionProjects/algorithms/n.txt");
+    auto t1 = std::chrono::high_resolution_clock::now();
+//    test.load_file("/Users/nesmayakout/CLionProjects/algorithms/n.txt");
+    auto t2 = std::chrono::high_resolution_clock::now();
+    auto diff = t2 - t1;
 
     cout << "height of tree = " << test.height() << endl;
     cout << "minimum value = " << test.minimum(test.get_tree())->value << endl;
     cout << "maximum value = " << test.maximum(test.get_tree())->value << endl;
     cout << "root value = " << test.get_tree()->value << endl;
+    cout << "time taken: " << diff.count() << endl;
     return 0;
 }
