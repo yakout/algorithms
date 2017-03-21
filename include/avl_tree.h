@@ -8,6 +8,7 @@
 #include <iostream>
 #include <stack>
 #include <fstream>
+#include <iomanip>
 
 namespace algo {
     template<typename T>
@@ -19,7 +20,7 @@ namespace algo {
             Node *left, *right;
             T value;
             int height;
-            Node(const T &x) : left(nullptr), right(nullptr), value(x), height(0) {}
+            Node(const T &x) : left(nullptr), right(nullptr), value(x), height(0) {};
 
             /**
              * updates the balance factor (height) of the current node.
@@ -35,6 +36,13 @@ namespace algo {
          * load keys from file.
          */
          void load_file(std::string path);
+
+        /**
+         * finds node with some key.
+         * @param key
+         * @return
+         */
+        Node *find_node(const T *key);
 
         /**
          * BST insertion.
@@ -150,12 +158,15 @@ namespace algo {
         void to_string() {
 //            inorder(root);
 //            inorder();
-            pre_order(root);
+//            pre_order(root);
+            postorder(root, 0);
         }
 
         Node* get_tree() {
             return root;
         }
+
+        void postorder(Node* p, int i);
 
     private:
         Node *root;
@@ -174,7 +185,16 @@ namespace algo {
          * @param node
          */
         void pre_order(Node *node);
+
+        Node * delete_key(Node *node, T key);
     };
+
+
+
+
+
+
+
 
 
     /**  C O D E    I M P L E M E N T A T I O N     **/
@@ -225,13 +245,13 @@ namespace algo {
         int balance = get_balance(node);
 
         if (balance == 2) {
-            if (get_balance(node->left) > 0) {
+            if (get_balance(node->left) >= 0) {
                 return left_left(node);
             } else {
                 return left_right(node);
             }
         } else if (balance == -2) {
-            if (get_balance(node->right) < 0) {
+            if (get_balance(node->right) <= 0) {
                 return right_right(node);
             } else {
                 return right_left(node);
@@ -296,27 +316,70 @@ namespace algo {
 //        return true;
     }
 
+
     template<typename T>
     bool AVL<T>::delete_key(T key) {
-        Node *current_node = root;
-        while(current_node != nullptr) {
-            if (current_node->value == key) {
-                if (current_node->right == nullptr
-                    && current_node->left == nullptr) {
-                    delete current_node;
-                }
-                if (current_node->right == nullptr) {
-                    Node *temp = current_node->left;
-                    current_node->left = current_node->left->left;
-                    delete temp;
-                } else {
-                    //todo
-                }
-            }
+        root = delete_key(root, key);
+        root->update_height();
+        return true;
+    }
 
+    template<typename T>
+    typename AVL<T>::Node *AVL<T>::delete_key(Node *node, T key) {
+        if (node == nullptr) {
+            cout << "key not found";
+            return nullptr;
         }
-        // key not found
-        return false;
+        if (key < node->value) {
+            node->left = delete_key(node->left, key);
+        } else if (key > node->value) {
+            node->right = delete_key(node->right, key);
+        } else {
+            // node is found.
+            if (node->left == nullptr && node->right == nullptr) {
+                delete node;
+                return nullptr;
+            } else if (node->left == nullptr) {
+                delete node;
+                return node->right;
+            } else if (node->right == nullptr) {
+                delete node;
+                return node->left;
+            } else {
+                Node *successor_node = successor(node);
+                if (node->right->left == nullptr) {
+                    node->right->left = node->left;
+                    node->right = nullptr;
+                    delete node;
+                    successor_node->update_height();
+                    return successor_node;
+                }
+                node->right->left = successor_node->right;
+                successor_node->right = node->right;
+                successor_node->left = node->left;
+                delete node;
+                successor_node->update_height();
+                return successor_node;
+            }
+        }
+        node->update_height();
+        int balance = get_balance(node);
+
+        if (balance == 2) {
+            if (get_balance(node->left) >= 0) {
+                return left_left(node);
+            } else {
+                return left_right(node);
+            }
+        } else if (balance == -2) {
+            // take care from the equal sign
+            if (get_balance(node->right) <= 0) {
+                return right_right(node);
+            } else {
+                return right_left(node);
+            }
+        }
+        return node;
     }
 
     template<typename T>
@@ -327,14 +390,33 @@ namespace algo {
     template<typename T>
     typename AVL<T>::Node *AVL<T>::successor(const AVL<T>::Node *node) {
         if (node->right != nullptr) {
-            Node *temp = node->right;
-            //todo use minimum
-            while (temp->left != nullptr) {
-                temp = temp->left;
-            }
-            return temp;
+            return minimum(node->right);
         }
-        return nullptr;
+        stack<Node> s;
+        Node *temp = root;
+        // put the path to the node in a stack.
+        while(temp != nullptr) {
+            s.push(*temp);
+            if (node->value < temp->value) {
+                s.push(*temp->left);
+            } else if (node->value > temp->value){
+                s.push(*temp->right);
+            }
+        }
+        if (s.size() == 1) {
+            // there is no successor for this node; the node is the greatest key.
+            return nullptr;
+        }
+        temp = &s.top();
+        s.pop();
+        Node *parent = &s.top();
+        s.pop();
+        while (parent != nullptr && temp == parent->right) {
+            temp = parent;
+            parent = &s.top();
+            s.pop();
+        }
+        return parent;
     }
 
     template<typename T>
@@ -463,6 +545,41 @@ namespace algo {
 //            insert_key(line);
 //        }
     }
+
+    template<typename T>
+    typename AVL<T>::Node *AVL<T>::find_node(const T *key) {
+        Node *temp = root;
+        while(temp != nullptr) { ;
+            if (key < temp->value) {
+                temp = temp->left;
+            } else if (key > temp->value){
+                temp = temp->right;
+            } else {
+                return temp;
+            }
+        }
+        // key not found
+        return nullptr;
+    }
+
+    template<typename T>
+    void AVL<T>::postorder(AVL<T>::Node* p, int indent) {
+        if(p != nullptr) {
+            if(p->right) {
+                postorder(p->right, indent+4);
+            }
+            if (indent) {
+                std::cout << std::setw(indent) << ' ';
+            }
+            if (p->right) std::cout<<" /\n" << std::setw(indent) << ' ';
+            std::cout<< p->value << "\n ";
+            if(p->left) {
+                std::cout << std::setw(indent) << ' ' <<" \\\n";
+                postorder(p->left, indent+4);
+            }
+        }
+    }
+
 }
 
 

@@ -85,7 +85,13 @@
 		<Unit filename="/Users/nesmayakout/CLionProjects/algorithms/include/avl_tree.h">
 			<Option target="algorithms"/>
 		</Unit>
+		<Unit filename="/Users/nesmayakout/CLionProjects/algorithms/include/binary_tree_ascii.h">
+			<Option target="algorithms"/>
+		</Unit>
 		<Unit filename="/Users/nesmayakout/CLionProjects/algorithms/include/dectionary.h">
+			<Option target="algorithms"/>
+		</Unit>
+		<Unit filename="/Users/nesmayakout/CLionProjects/algorithms/include/radix_sort.h">
 			<Option target="algorithms"/>
 		</Unit>
 		<Unit filename="/Users/nesmayakout/CLionProjects/algorithms/include/red_black_tree.h">

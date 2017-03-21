@@ -13,6 +13,22 @@ stack
 -
 fstream
 -
+iomanip
+-
+
+../include/binary_tree_ascii.h
+cstdio
+-
+cstring
+-
+cstdlib
+-
+algorithm
+-
+avl_tree.h
+../include/avl_tree.h
+stdio.h
+-
 
 ../include/bubble_sort.h
 
@@ -57,4 +73,6 @@ chrono
 -
 avl_tree.h
 /Users/nesmayakout/CLionProjects/algorithms/src/avl_tree.h
+binary_tree_ascii.h
+/Users/nesmayakout/CLionProjects/algorithms/src/binary_tree_ascii.h
 

@@ -16,7 +16,7 @@ namespace algo {
         random_access_itr i = p - 1;
         for (random_access_itr j = p; j <= (r - 1); ++j) {
             if (*j < *pivot) {
-                i++;t
+                i++;
                 swap(*j, *i);
             }
         }
