@@ -59,25 +59,43 @@ namespace algo {
         Node * insert_key(Node *node, T key);
 
         /**
-         *
+         * delete the node with the given key in avl tree.
          * @param key
          * @return
          */
         bool delete_key(T key);
+
         /**
-         *
+         * delete the node with the given key in the given subtree.
+         * @param node
          * @param key
          * @return
          */
-        bool search(T key);
+        Node * delete_key(Node *node, T key);
+
         /**
-         *
+         * search for a node with the given key in the AVL tree and returns true if found
+         * or false if not found.
+         * @param key
+         * @return
+         */
+        bool lookup(T key);
+
+        /**
+         * utility function to search for a node with the given key in the given subtree
+         * and returns true if found or false if not found.
+         * @param key
+         * @return
+         */
+        bool lookup(Node *node, T key);
+        /**
+         * returns the successor (the next bigger key) of the given node.
          * @param node
          * @return
          */
         Node* successor(const Node *node);
         /**
-         *
+         * returns the predecessor (the previous smaller key) of the given node.
          * @param node
          * @return
          */
@@ -158,15 +176,12 @@ namespace algo {
         void to_string() {
 //            inorder(root);
 //            inorder();
-//            pre_order(root);
-            postorder(root, 0);
+//            preorder(root);
         }
 
         Node* get_tree() {
             return root;
         }
-
-        void postorder(Node* p, int i);
 
     private:
         Node *root;
@@ -184,14 +199,9 @@ namespace algo {
          * preorder traverse without recursion.
          * @param node
          */
-        void pre_order(Node *node);
+        void preorder(Node *node);
 
-        Node * delete_key(Node *node, T key);
     };
-
-
-
-
 
 
 
@@ -383,8 +393,24 @@ namespace algo {
     }
 
     template<typename T>
-    bool AVL<T>::search(T key) {
-        return false;
+    bool AVL<T>::lookup(T key) {
+        return lookup(root, key);
+    }
+
+    template<typename T>
+    bool AVL<T>::lookup(AVL<T>::Node *node, T key) {
+        if (node == nullptr) {
+            // not found
+            return false;
+        }
+        if (key < node->value) {
+            return lookup(node->left, key);
+        } else if (key < node->value) {
+            return lookup(node->right, key);
+        } else {
+            // found.
+            return true;
+        }
     }
 
     template<typename T>
@@ -421,6 +447,7 @@ namespace algo {
 
     template<typename T>
     typename AVL<T>::Node *AVL<T>::predecessor(const AVL<T>::Node *node) {
+        // todo: implement predecessor
         return nullptr;
     }
 
@@ -503,11 +530,11 @@ namespace algo {
     }
 
     template<typename T>
-    void AVL<T>::pre_order(AVL<T>::Node *node) {
+    void AVL<T>::preorder(AVL<T>::Node *node) {
         if (node != nullptr) {
             std::cout << "key = " << node->value << " || height = " << node->height << std::endl;
-            pre_order(node->left);
-            pre_order(node->right);
+            preorder(node->left);
+            preorder(node->right);
         }
     }
 
@@ -560,24 +587,6 @@ namespace algo {
         }
         // key not found
         return nullptr;
-    }
-
-    template<typename T>
-    void AVL<T>::postorder(AVL<T>::Node* p, int indent) {
-        if(p != nullptr) {
-            if(p->right) {
-                postorder(p->right, indent+4);
-            }
-            if (indent) {
-                std::cout << std::setw(indent) << ' ';
-            }
-            if (p->right) std::cout<<" /\n" << std::setw(indent) << ' ';
-            std::cout<< p->value << "\n ";
-            if(p->left) {
-                std::cout << std::setw(indent) << ' ' <<" \\\n";
-                postorder(p->left, indent+4);
-            }
-        }
     }
 
 }
