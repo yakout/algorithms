@@ -13,6 +13,7 @@
 #include <chrono>
 #include "avl_tree.h"
 #include "binary_tree_ascii.h"
+#include "dictionary.h"
 
 
 
@@ -56,114 +57,69 @@ int main(int argc, char *argv[]) {
 //    }
 //    cout << "time taken: " << diff1.count() << endl;
 //
+
+
+
+
     AVL<int> test;
-//    test.insert_key("g");
-//    test.insert_key("h");
-//    test.insert_key("f");
-//    test.insert_key("z");
-//    test.insert_key("b");
-//    test.insert_key("n");
-//    test.insert_key("v");
-//    test.insert_key("x");
-//    test.insert_key("z");
-//    test.insert_key("y");
-//    test.insert_key("i");
-//    test.insert_key("q");
-//    test.insert_key("a");
-
     // test case #1
-     /** left_left node = 13
-         left_right node = 13
-         left_left node = 4
-         left_right node = 5
-     */
-//    test.insert_key(77);
-//    print_ascii_node(test.get_tree());
-//    test.insert_key(19);
-//    print_ascii_node(test.get_tree());
-//    test.insert_key(31);
-//    print_ascii_node(test.get_tree());
-//    test.insert_key(30);
-//    print_ascii_node(test.get_tree());
-//    test.insert_key(18);
-//    print_ascii_node(test.get_tree());
-//    test.insert_key(7);
-//    print_ascii_node(test.get_tree());
+
+//    auto t1 = std::chrono::high_resolution_clock::now();
+//
+//    // screen shot 1
+//    test.insert_key(41);
+//    test.insert_key(5);
 //    test.insert_key(74);
-//    print_ascii_node(test.get_tree());
-//    test.insert_key(43);
-//    print_ascii_node(test.get_tree());
+//    test.insert_key(15);
+//    test.insert_key(78);
+//    test.insert_key(90);
+//    test.insert_key(29);
+//    test.insert_key(93);
+//    test.insert_key(34);
+//    test.insert_key(27);
 //    test.insert_key(33);
+//    test.insert_key(30);
+//    test.insert_key(43);
+//    test.insert_key(26);
+//    test.insert_key(52);
+//    test.insert_key(32);
+//    test.insert_key(87);
+//    test.insert_key(22);
+//    test.insert_key(77);
+//    test.insert_key(94);
+//    test.insert_key(20);
+//    test.insert_key(24);
+//    test.insert_key(76);
+//    test.insert_key(51);
+//    test.insert_key(1);
+//    test.insert_key(2);
+//    test.insert_key(3);
+//    test.insert_key(4);
+//    test.insert_key(6);
+//    test.insert_key(7);
+//    test.insert_key(8);
+//    test.insert_key(9);
+//    test.insert_key(10);
+//    test.insert_key(11);
+//    test.insert_key(12);
+//    test.insert_key(13);
+//    test.insert_key(17);
+//    test.insert_key(16);
+//    test.insert_key(14);
+//    // screen shot 2
+//    test.delete_key(1);
+//    cout << "node 1 found: " << test.lookup(1) << endl;
+//    cout << "node 2 found: " << test.lookup(2) << endl;
+//    auto t2 = std::chrono::high_resolution_clock::now();
 //    print_ascii_node(test.get_tree());
-//    test.insert_key(86);
-//    print_ascii_node(test.get_tree());
-//    test.insert_key(89);
-//    print_ascii_node(test.get_tree());
-//    test.insert_key(57);
-//    print_ascii_node(test.get_tree());
-//    test.delete_key(18);
-//    test.delete_key(7);
-//    test.delete_key(33);
-//    print_ascii_node(test.get_tree());
-
-
-
-    auto t1 = std::chrono::high_resolution_clock::now();
-
-    // screen shot 1
-    test.insert_key(41);
-    test.insert_key(5);
-    test.insert_key(74);
-    test.insert_key(15);
-    test.insert_key(78);
-    test.insert_key(90);
-    test.insert_key(29);
-    test.insert_key(93);
-    test.insert_key(34);
-    test.insert_key(27);
-    test.insert_key(33);
-    test.insert_key(30);
-    test.insert_key(43);
-    test.insert_key(26);
-    test.insert_key(52);
-    test.insert_key(32);
-    test.insert_key(87);
-    test.insert_key(22);
-    test.insert_key(77);
-    test.insert_key(94);
-    test.insert_key(20);
-    test.insert_key(24);
-    test.insert_key(76);
-    test.insert_key(51);
-    test.insert_key(1);
-    test.insert_key(2);
-    test.insert_key(3);
-    test.insert_key(4);
-    test.insert_key(6);
-    test.insert_key(7);
-    test.insert_key(8);
-    test.insert_key(9);
-    test.insert_key(10);
-    test.insert_key(11);
-    test.insert_key(12);
-    test.insert_key(13);
-    test.insert_key(17);
-    test.insert_key(16);
-    test.insert_key(14);
-    // screen shot 2
-    test.delete_key(1);
-    cout << "node 1 found: " << test.lookup(1) << endl;
-    cout << "node 2 found: " << test.lookup(2) << endl;
-    auto t2 = std::chrono::high_resolution_clock::now();
-    print_ascii_node(test.get_tree());
-
-
-
-
-
-
-//    test.load_file("/Users/nesmayakout/CLionProjects/algorithms/n.txt");
-    auto diff = t2 - t1;
+//
+//
+//
+//
+//
+//
+////    test.load_file("/Users/nesmayakout/CLionProjects/algorithms/n.txt");
+//    auto diff = t2 - t1;
 
 
 //    struct X {
@@ -177,10 +133,18 @@ int main(int argc, char *argv[]) {
 //    b->l = a;
 
 
-    cout << "height of tree = " << test.height() << endl;
-    cout << "minimum value = " << test.minimum(test.get_tree())->value << endl;
-    cout << "maximum value = " << test.maximum(test.get_tree())->value << endl;
-    cout << "root value = " << test.get_tree()->value << endl;
+
+    dictionary dict;
+    auto t1 = std::chrono::high_resolution_clock::now();
+    dict.load("/Users/nesmayakout/CLionProjects/algorithms/words.txt");
+    auto t2 = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double>  diff = t2 - t1;
+
+//    cout << "height of tree = " << test.height() << endl;
+//    cout << "minimum value = " << test.minimum(test.get_tree())->value << endl;
+//    cout << "maximum value = " << test.maximum(test.get_tree())->value << endl;
+//    cout << "root value = " << test.get_tree()->value << endl;
+    dict.print_statistics();
     cout << "time taken: " << diff.count() << endl;
     return 0;
 }

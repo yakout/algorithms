@@ -32,6 +32,14 @@ stdio.h
 
 ../include/bubble_sort.h
 
+../include/dictionary.h
+string
+-
+avl_tree.h
+../include/avl_tree.h
+binary_tree_ascii.h
+../include/binary_tree_ascii.h
+
 ../include/heap.h
 iostream
 -
@@ -75,4 +83,6 @@ avl_tree.h
 /Users/nesmayakout/CLionProjects/algorithms/src/avl_tree.h
 binary_tree_ascii.h
 /Users/nesmayakout/CLionProjects/algorithms/src/binary_tree_ascii.h
+dictionary.h
+/Users/nesmayakout/CLionProjects/algorithms/src/dictionary.h
 

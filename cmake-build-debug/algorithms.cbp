@@ -88,7 +88,7 @@
 		<Unit filename="/Users/nesmayakout/CLionProjects/algorithms/include/binary_tree_ascii.h">
 			<Option target="algorithms"/>
 		</Unit>
-		<Unit filename="/Users/nesmayakout/CLionProjects/algorithms/include/dectionary.h">
+		<Unit filename="/Users/nesmayakout/CLionProjects/algorithms/include/dictionary.h">
 			<Option target="algorithms"/>
 		</Unit>
 		<Unit filename="/Users/nesmayakout/CLionProjects/algorithms/include/radix_sort.h">

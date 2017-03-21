@@ -207,7 +207,7 @@ namespace algo {
 
 
 
-    /**  C O D E    I M P L E M E N T A T I O N     **/
+    /**  F U N C T I O N S   D E F I N T I O N S   **/
 
     template<typename T>
     bool AVL<T>::insert_key(T key) {
@@ -453,7 +453,7 @@ namespace algo {
 
     template<typename T>
     typename AVL<T>::Node *AVL<T>::left_left(AVL<T>::Node *node) {
-        cout << "left_left node = " << node->value << endl;
+//        cout << "left_left node = " << node->value << endl;
         Node *new_root = node->left;
         node->left = new_root->right;
         new_root->right = node;
@@ -464,7 +464,7 @@ namespace algo {
 
     template<typename T>
     typename AVL<T>::Node *AVL<T>::right_right(AVL<T>::Node *node) {
-        cout << "right_right node = " << node->value << endl;
+//        cout << "right_right node = " << node->value << endl;
         Node *new_root = node->right;
         node->right = new_root->left;
         new_root->left = node;
@@ -475,7 +475,7 @@ namespace algo {
 
     template<typename T>
     typename AVL<T>::Node *AVL<T>::left_right(AVL<T>::Node *node) {
-        cout << "left_right node = " << node->value << endl;
+//        cout << "left_right node = " << node->value << endl;
         Node *new_root = node->left->right;
         node->left->right = new_root->left;
         new_root->left = node->left;
@@ -489,7 +489,7 @@ namespace algo {
 
     template<typename T>
     typename AVL<T>::Node *AVL<T>::right_left(AVL<T>::Node *node) {
-        cout << "right_left node = " << node->value << endl;
+//        cout << "right_left node = " << node->value << endl;
         Node *new_root = node->right->left;
         node->right->left = new_root->right;
         new_root->right = node->right;
@@ -559,16 +559,17 @@ namespace algo {
         std::ifstream infile(path);
         if (!infile.is_open()) {
             cout <<" Failed to open" << endl;
-        } else {
-            cout <<"Opened OK" << endl;
+            return;
         }
+        cout <<"Opened OK" << endl;
         string line;
         int a;
         while (infile >> a) {
             insert_key(a);
         }
 //        while (getline(infile, line)) {
-//            cout << line << endl;
+////            cout << line << endl;
+//            if (!line.empty())
 //            insert_key(line);
 //        }
     }

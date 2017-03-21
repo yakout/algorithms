@@ -4,6 +4,7 @@
 CMakeFiles/algorithms.dir/src/test.cpp.o: ../include/avl_tree.h
 CMakeFiles/algorithms.dir/src/test.cpp.o: ../include/binary_tree_ascii.h
 CMakeFiles/algorithms.dir/src/test.cpp.o: ../include/bubble_sort.h
+CMakeFiles/algorithms.dir/src/test.cpp.o: ../include/dictionary.h
 CMakeFiles/algorithms.dir/src/test.cpp.o: ../include/heap.h
 CMakeFiles/algorithms.dir/src/test.cpp.o: ../include/insertion_sort.h
 CMakeFiles/algorithms.dir/src/test.cpp.o: ../include/merge_sort.h
