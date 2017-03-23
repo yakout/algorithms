@@ -69,10 +69,10 @@ namespace algo {
     void dictionary::print_statistics() {
 //        print_ascii_node(_dictionary.get_tree());
         printf("size of dictionary = %lld\n", dict_size);
-        printf("max key value = %s\n", _dictionary.maximum(_dictionary.get_tree())->value.data());
-        printf("min key value = %s\n", _dictionary.minimum(_dictionary.get_tree())->value.data());
+        printf("max key value = %s\n", _dictionary.maximum(_dictionary.get_tree())->value.c_str());
+        printf("min key value = %s\n", _dictionary.minimum(_dictionary.get_tree())->value.c_str());
         printf("height of tree = %d\n", _dictionary.height());
-        printf("root value = %s\n", _dictionary.get_tree()->value.data());
+        printf("root value = %s\n", _dictionary.get_tree()->value.c_str());
     }
 }
 
