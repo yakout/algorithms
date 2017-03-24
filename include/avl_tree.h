@@ -327,17 +327,23 @@ namespace algo {
     }
 
 
+
     template<typename T>
     bool AVL<T>::delete_key(T key) {
         root = delete_key(root, key);
-        root->update_height();
+        if (root != nullptr) {
+            // avl tree is not empty
+            root->update_height();
+        }
         return true;
     }
+
 
     template<typename T>
     typename AVL<T>::Node *AVL<T>::delete_key(Node *node, T key) {
         if (node == nullptr) {
-            cout << "key not found";
+            // key not found
+            cout << "key not found" << endl;
             return nullptr;
         }
         if (key < node->value) {
