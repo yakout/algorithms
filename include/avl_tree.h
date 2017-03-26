@@ -11,57 +11,69 @@
 #include <iomanip>
 
 namespace algo {
+
     template<typename T>
     class AVL {
     public:
         AVL(): root(nullptr){};
         ~AVL() {};
+
+        // node struct
         struct Node {
             Node *left, *right;
             T value;
             int height;
+            // Any new node will have it's right and left children points to null.
             Node(const T &x) : left(nullptr), right(nullptr), value(x), height(0) {};
 
             /**
-             * updates the balance factor (height) of the current node.
+             * Updates the height of the current node.
              */
             void update_height() {
+                // The height of null node is -1.
                 height = max(left == nullptr ? -1 : left->height,
                              right == nullptr ? -1 : right->height) + 1;
             }
         };
 
+        class key_not_found: public std::exception {
+            public:
+                virtual const char * what() const throw() {
+                            return "key does not exist";
+                }
+        };
+
 
         /**
-         * load keys from file.
+         * load keys from file with the given path.
          */
          void load_file(std::string path);
 
         /**
-         * finds node with some key.
-         * @param key
-         * @return
+         * finds node with the given key.
+         * @param key : the key of the node.
+         * @return Node * : returns a pointer to the node that have the given key.
          */
         Node *find_node(const T *key);
 
         /**
-         * BST insertion.
-         * @param key
-         * @return
+         * Regular BST insertion.
+         * @param key : node key.
+         * @return bool : true in success, false in failur.
          */
         bool insert_key(T key);
 
         /**
          * AVL insertion using recursion.
          * @param key
-         * @return
+         * @return Node*
          */
-        Node * insert_key(Node *node, T key);
+        Node *insert_key(Node *node, T key);
 
         /**
          * delete the node with the given key in avl tree.
          * @param key
-         * @return
+         * @return bool : true in success, false in failur.
          */
         bool delete_key(T key);
 
@@ -74,60 +86,121 @@ namespace algo {
         Node * delete_key(Node *node, T key);
 
         /**
-         * search for a node with the given key in the AVL tree and returns true if found
+         * Search for a node with the given key in the AVL tree and returns true if found
          * or false if not found.
          * @param key
-         * @return
+         * @return bool : true if found.
          */
         bool lookup(T key);
 
         /**
-         * utility function to search for a node with the given key in the given subtree
+         * Utility function to search for a node with the given key in the given subtree
          * and returns true if found or false if not found.
          * @param key
-         * @return
+         * @return bool : true if found.
          */
         bool lookup(Node *node, T key);
+
         /**
          * returns the successor (the next bigger key) of the given node.
          * @param node
          * @return
          */
         Node* successor(const Node *node);
+
         /**
          * returns the predecessor (the previous smaller key) of the given node.
-         * @param node
-         * @return
+         * @param Node*
+         * @return Node*
          */
         Node* predecessor(const Node *node);
 
-        // rebalancing methods
+        
+
+        
+        // B A L A N C I N G     M E T H O D S //  
+
         /**
-         * i.e single right rotation.
-         * @param node
-         * @return
+         * This case is when the node is a left child and it's parent is also left child,
+         * and we need to right rotate the grand parent node.
+         * 
+         *        T1, T2, T3 and T4 are subtrees.
+         *
+         *           z                                      y 
+         *          / \                                   /   \
+         *         y   T4      left_left(z)              x      z
+         *        / \          - - - - - - - - ->      /  \    /  \ 
+         *       x   T3                               T1  T2  T3  T4
+         *      / \
+         *    T1   T2
+         * 
+         * We call this a single rotation.
+         * @param Node* a subtree, in the example above it will be z.
+         * @return Node* the new root of the given subtree.
          */
         Node* left_left(Node *node);
+
         /**
-         * i.e single left rotation.
-         * @param node
-         * @return
+         * It's the symetric case for the left_left case (a node is a right
+         * child and it's parent is also right child).
+         * Here we will need to do a left rotation.
+         *
+         *        T1, T2, T3 and T4 are subtrees.
+         *
+         *            z                               y
+         *          /  \                            /   \ 
+         *          T1   y     right_right(z)       z      x
+         *             /  \   - - - - - - - ->    / \    / \
+         *            T2   x                     T1  T2 T3  T4
+         *                / \
+         *               T3  T4
+         *
+         * We call this a single rotation.
+         * @param Node* a subtree, in the example above it will be z.
+         * @return Node* the new root of the given subtree.
          */
         Node* right_right(Node *node);
+
         /**
-         * i.e double rotation.
-         * rotate left the left-right children then rotate
-         * right the node.
-         * @param node
-         * @return
+         * This case is when the node is a right child and it's parent is a left child.
+         *
+         *        T1, T2, T3 and T4 are subtrees.
+         *
+         *        z                                    x
+         *       / \                                 /   \ 
+         *      y   T4   left_right(z)             y      z
+         *     / \      - - - - - - - - ->        / \    / \
+         *   T1   x                             T1  T2  T3  T4
+         *       / \                        
+         *     T2   T3
+         *
+         * This is called "double rotation" also "two rotations",
+         * rotate left the left-right node ('x' in this example) then rotate
+         * right the node it self ('z' in this example).
+         *
+         * @param Node* a subtree, in the example above it will be z.
+         * @return Node* the new root of the given subtree.
          */
         Node* left_right(Node *node);
+
         /**
-         * * i.e double rotation.
-         * rotate right the right-left children then rotate
-         * left the node.
-         * @param node
-         * @return
+         * The symetric case for the left_right case (the node is a left child
+         * and it's parent is a right child).
+         * 
+         *           z                                x
+         *          / \                             /  \ 
+         *        T1   y   right_left(z)          z      y
+         *            / \  - - - - - - - - ->    / \    / \
+         *           x   T4                    T1  T2  T3  T4
+         *          / \
+         *        T2   T3
+         *
+         * This is called "double rotation" also "two rotations",
+         * rotate right the right-left node ('x' in this example) then rotate
+         * left the node it self ('z' in this example).
+         *
+         * @param Node* a subtree, in the example above it will be z.
+         * @return Node* the new root of the given subtree.
          */
         Node* right_left(Node *node);
 
@@ -144,6 +217,7 @@ namespace algo {
          * @return
          */
         Node* maximum(Node *node);
+
         /**
          * return the height of the AVL tree.
          * @return
@@ -151,6 +225,7 @@ namespace algo {
         inline int height() {
             return root->height;
         }
+
         /**
          * return the height of the node.
          * @return
@@ -161,6 +236,7 @@ namespace algo {
             }
             return node->height;
         }
+
         /**
          * return the balance of the node.
          */
@@ -170,15 +246,19 @@ namespace algo {
             }
             return height(node->left) - height(node->right);
         }
+
         /**
          * print the tree nodes using in-order traversal.
          */
         void to_string() {
-//            inorder(root);
+           inorder(root);
 //            inorder();
 //            preorder(root);
         }
 
+        /**
+         * @return Node* The avl root node.
+         */
         Node* get_tree() {
             return root;
         }
@@ -205,38 +285,16 @@ namespace algo {
 
 
 
-
-
     /**  F U N C T I O N S   D E F I N T I O N S   **/
 
     template<typename T>
     bool AVL<T>::insert_key(T key) {
-//        Node *new_node = new Node(key);
-//        Node *current_node = root;
-//        if (current_node == nullptr) {
-//            root = new_node;
-//            return new_node;
-//        }
-//        while(true) {
-//            if (key > current_node->value) {
-//                if (current_node->right != nullptr) {
-//                    current_node = current_node->right;
-//                } else {
-//                    current_node->right = new_node;
-//                    break;
-//                }
-//            } else {
-//                if (current_node->left != nullptr) {
-//                    current_node = current_node->left;
-//                } else {
-//                    current_node->left = new_node;
-//                    break;
-//                }
-//            }
-//        }
-//        return new_node;
-
-        root = insert_key(root, key);
+        try {
+            root = insert_key(root, key);
+        } catch (std::bad_alloc) {
+            // We better give up to this exception and let the program terminate ;)
+            return false;
+        }
         return true;
     }
 
@@ -268,69 +326,18 @@ namespace algo {
             }
         }
         return node;
-
-//        // AVL tree is empty
-//        if (node == nullptr) {
-//            root = new Node(key);
-//            return true;
-//        }
-//        if (key < node->value) {
-//            if (node->left == nullptr) {
-//                node->left = new Node(key);
-//            } else {
-//                insert_key(node->left, key);
-//            }
-//        } else if (key > node->value) {
-//            if (node->right == nullptr) {
-//                node->right = new Node(key);
-//            } else {
-//                insert_key(node->right, key);
-//            }
-//        } else {
-//            // duplicates keys are invalid in AVL.
-//            return false;
-//        }
-//
-//        node->update_height();
-//        int balance = get_balance(node);
-//
-//        if (balance == 2) {
-//
-//        }
-
-//        if (get_balance(node->left) == 2) {
-//            if (get_balance(node->left->left) > 0) {
-//                node->left = left_left(node->left);
-//            } else {
-//                node->left = left_right(node->left);
-//            }
-//        } else if (get_balance(node->left) == -2) {
-//            if (get_balance(node->left->right) < 0) {
-//                node->left = right_right(node->left);
-//            } else {
-//                node->left = right_left(node->left);
-//            }
-//        } else if (get_balance(node->right) == 2) {
-//            if (get_balance(node->right->left) > 0) {
-//                node->right = left_left(node->right);
-//            } else {
-//                node->right = left_right(node->right);
-//            }
-//        } else if (get_balance(node->right) == -2) {
-//            if (get_balance(node->right->right) < 0) {
-//                node->right = right_right(node->right);
-//            } else {
-//                node->right = right_left(node->right);
-//            }
-//        }
-//        return true;
     }
 
 
 
     template<typename T>
     bool AVL<T>::delete_key(T key) {
-        root = delete_key(root, key);
+        try {
+            root = delete_key(root, key);
+        } catch (const key_not_found& e) {
+            cout <<  e.what() << endl;
+            return false;
+        }
         if (root != nullptr) {
             // avl tree is not empty
             root->update_height();
@@ -343,8 +350,7 @@ namespace algo {
     typename AVL<T>::Node *AVL<T>::delete_key(Node *node, T key) {
         if (node == nullptr) {
             // key not found
-            cout << "key not found" << endl;
-            return nullptr;
+            throw AVL<T>::key_not_found();
         }
         if (key < node->value) {
             node->left = delete_key(node->left, key);
