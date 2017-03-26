@@ -1,6 +1,6 @@
 .PHONY: all clean
 CC=gcc
-CPP=g++
+CPP=Clang
 AR=ar
 RANLIB=ranlib
 CFLAGS= -g -Wall -Wno-unused-function
