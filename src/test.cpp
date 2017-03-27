@@ -66,92 +66,80 @@ int main(int argc, char *argv[]) {
 
 //    auto t1 = std::chrono::high_resolution_clock::now();
 //
-    // screen shot 1
-    test.insert_key(41);
+    // // screen shot 1
+    // test.insert_key(41);
+    // test.insert_key(5);
+    // test.insert_key(74);
+    // test.insert_key(15);
+    // test.insert_key(78);
+    // test.insert_key(90);
+    // test.insert_key(29);
+    // test.insert_key(93);
+    // test.insert_key(34);
+    // test.insert_key(27);
+    // test.insert_key(33);
+    // test.insert_key(30);
+    // test.insert_key(43);
+    // test.insert_key(26);
+    // test.insert_key(52);
+    // test.insert_key(32);
+    // test.insert_key(87);
+    // test.insert_key(22);
+    // test.insert_key(77);
+    // test.insert_key(94);
+    // test.insert_key(20);
+    // test.insert_key(24);
+    // test.insert_key(76);
+    // test.insert_key(51);
+    // test.insert_key(1);
+    // test.insert_key(2);
+    // test.insert_key(3);
+    // test.insert_key(4);
+    // test.insert_key(6);
+    // test.insert_key(7);
+    // test.insert_key(8);
+    // test.insert_key(9);
+    // test.insert_key(10);
+    // test.insert_key(11);
+    // test.insert_key(12);
+    // test.insert_key(13);
+    // test.insert_key(17);
+    // test.insert_key(16);
+    // test.insert_key(14);
+
+
+    // // screen shot 2
+    // test.delete_key(1);
+
+//    auto t2 = std::chrono::high_resolution_clock::now();
+
+
+
+    test.insert_key(13);
+    test.insert_key(8);
     test.insert_key(5);
-    test.insert_key(74);
-    test.insert_key(15);
-    test.insert_key(78);
-    test.insert_key(90);
-    test.insert_key(29);
-    test.insert_key(93);
-    test.insert_key(34);
-    test.insert_key(27);
-    test.insert_key(33);
-    test.insert_key(30);
-    test.insert_key(43);
-    test.insert_key(26);
-    test.insert_key(52);
-    test.insert_key(32);
-    test.insert_key(87);
-    test.insert_key(22);
-    test.insert_key(77);
-    test.insert_key(94);
-    test.insert_key(20);
-    test.insert_key(24);
-    test.insert_key(76);
-    test.insert_key(51);
-    test.insert_key(1);
-    test.insert_key(2);
-    test.insert_key(3);
+    test.insert_key(9);
     test.insert_key(4);
     test.insert_key(6);
-    test.insert_key(7);
-    test.insert_key(8);
-    test.insert_key(9);
-    test.insert_key(10);
-    test.insert_key(11);
     test.insert_key(12);
-    test.insert_key(13);
-    test.insert_key(17);
-    test.insert_key(16);
-    test.insert_key(14);
-    // screen shot 2
-    test.delete_key(1);
+    test.insert_key(2);
+    test.insert_key(1);
+    test.insert_key(3);
 
-    //test.insert_key(41);
-    test.delete_key(5);
-    test.delete_key(74);
-    test.delete_key(15);
-    test.delete_key(78);
-    test.delete_key(90);
-    test.delete_key(29);
-    test.delete_key(93);
-    test.delete_key(34);
-    test.delete_key(27);
-    test.delete_key(33);
-    test.delete_key(30);
-    test.delete_key(43);
-    test.delete_key(26);
-    test.delete_key(52);
-    test.delete_key(32);
-    test.delete_key(87);
-    test.delete_key(22);
-    test.delete_key(77);
-    test.delete_key(94);
-    test.delete_key(20);
-    test.delete_key(24);
-    test.delete_key(76);
-    test.delete_key(51);
-    test.delete_key(2);
-    test.delete_key(3);
-    test.delete_key(4);
-    test.delete_key(6);
-    test.delete_key(7);
-    test.delete_key(8);
-    test.delete_key(9);
-    test.delete_key(10);
-    test.delete_key(11);
-    test.delete_key(12);
-    test.delete_key(13);
-    test.delete_key(17);
-    test.delete_key(16);
-    test.delete_key(14);
 
-    cout << "node 1 found: " << test.lookup(1) << endl;
-    cout << "node 2 found: " << test.lookup(2) << endl;
-//    auto t2 = std::chrono::high_resolution_clock::now();
+    cout << test.lookup(0) << endl;
+    cout << test.lookup(11) << endl;
+    cout << test.lookup(20) << endl;
+
+
     print_ascii_node(test.get_tree());
+
+
+    // ifstream delet_infile("/Users/nesmayakout/Desktop/Lab2/TestCases/deletions.txt");
+    // ifstream dict_infile("/Users/nesmayakout/Desktop/Lab2/TestCases/dictionary.txt");
+    // ifstream query_infile("/Users/nesmayakout/Desktop/Lab2/TestCases/queries.txt");
+
+
 //
 //
 //

@@ -359,6 +359,7 @@ namespace algo {
         } else {
             // node is found.
             if (node->left == nullptr && node->right == nullptr) {
+                // deleting the node
                 delete node;
                 return nullptr;
             } else if (node->left == nullptr) {
@@ -406,7 +407,10 @@ namespace algo {
 
     template<typename T>
     bool AVL<T>::lookup(T key) {
-        return lookup(root, key);
+        bool temp = lookup(root, key);
+        if (temp) cout << "found the key: " << key << endl;
+        else cout << "no such key\n";
+        return temp;
     }
 
     template<typename T>
@@ -417,7 +421,7 @@ namespace algo {
         }
         if (key < node->value) {
             return lookup(node->left, key);
-        } else if (key < node->value) {
+        } else if (key > node->value) {
             return lookup(node->right, key);
         } else {
             // found.
