@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "disjoint_set.h"
+#include "data_structures/disjoint_set.h"
 
 
 /**

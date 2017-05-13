@@ -14,7 +14,7 @@ PROGRAMS = test
 
 all: $(PROGRAMS)
 
-test: $(SRCDIR)/test.cpp
+test: $(SRCDIR)/disjoint_set_driver.cpp
 	$(CPP) $(C11FLAGS) -o $@ $^ $(INCLUDEDIR) $(LIBS)
 clean:
 	rm -rf $(PROGRAMS) *.dSYM

@@ -43,6 +43,13 @@ namespace algo {
                 }
         };
 
+        class invalid_key: public std::exception {
+            public:
+                virtual const char * what() const throw() {
+                            return "invalid key: duplicate keys are not allowed";
+                }
+        };
+
 
         /**
          * load keys from file with the given path.
@@ -223,6 +230,9 @@ namespace algo {
          * @return
          */
         inline int height() {
+            if (root == nullptr) {
+                return -1;
+            }
             return root->height;
         }
 
@@ -252,8 +262,8 @@ namespace algo {
          */
         void to_string() {
            inorder(root);
-//            inorder();
-//            preorder(root);
+           // inorder();
+           // preorder(root);
         }
 
         /**
@@ -291,8 +301,8 @@ namespace algo {
     bool AVL<T>::insert_key(T key) {
         try {
             root = insert_key(root, key);
-        } catch (std::bad_alloc) {
-            // We better give up to this exception and let the program terminate ;)
+        } catch (const invalid_key& e) {
+            // cout << e.what() << endl;
             return false;
         }
         return true;
@@ -305,8 +315,10 @@ namespace algo {
         }
         if (key < node->value) {
             node->left = insert_key(node->left, key);
-        } else {
+        } else if (key > node->value) {
             node->right = insert_key(node->right, key);
+        } else {
+            throw invalid_key();
         }
 
         node->update_height();
@@ -335,7 +347,7 @@ namespace algo {
         try {
             root = delete_key(root, key);
         } catch (const key_not_found& e) {
-            cout <<  e.what() << endl;
+            // cout <<  e.what() << endl;
             return false;
         }
         if (root != nullptr) {
@@ -350,7 +362,7 @@ namespace algo {
     typename AVL<T>::Node *AVL<T>::delete_key(Node *node, T key) {
         if (node == nullptr) {
             // key not found
-            throw AVL<T>::key_not_found();
+            throw key_not_found();
         }
         if (key < node->value) {
             node->left = delete_key(node->left, key);
@@ -364,6 +376,12 @@ namespace algo {
                 return nullptr;
             } else if (node->left == nullptr) {
                 delete node;
+                // still have access to node.
+                // I am just telling the compiler you can overwrite it's space.
+                // to avoid this make node = nullptr
+                // it's bad practice i know :D 
+                // and it's better to use smart pointers.
+                // but i am just focusing on the algorithms for now.
                 return node->right;
             } else if (node->right == nullptr) {
                 delete node;
@@ -469,7 +487,7 @@ namespace algo {
 
     template<typename T>
     typename AVL<T>::Node *AVL<T>::left_left(AVL<T>::Node *node) {
-//        cout << "left_left node = " << node->value << endl;
+        // cout << "left_left node = " << node->value << endl;
         Node *new_root = node->left;
         node->left = new_root->right;
         new_root->right = node;
@@ -480,7 +498,7 @@ namespace algo {
 
     template<typename T>
     typename AVL<T>::Node *AVL<T>::right_right(AVL<T>::Node *node) {
-//        cout << "right_right node = " << node->value << endl;
+       // cout << "right_right node = " << node->value << endl;
         Node *new_root = node->right;
         node->right = new_root->left;
         new_root->left = node;
@@ -491,7 +509,7 @@ namespace algo {
 
     template<typename T>
     typename AVL<T>::Node *AVL<T>::left_right(AVL<T>::Node *node) {
-//        cout << "left_right node = " << node->value << endl;
+       // cout << "left_right node = " << node->value << endl;
         Node *new_root = node->left->right;
         node->left->right = new_root->left;
         new_root->left = node->left;
@@ -505,7 +523,7 @@ namespace algo {
 
     template<typename T>
     typename AVL<T>::Node *AVL<T>::right_left(AVL<T>::Node *node) {
-//        cout << "right_left node = " << node->value << endl;
+       // cout << "right_left node = " << node->value << endl;
         Node *new_root = node->right->left;
         node->right->left = new_root->right;
         new_root->right = node->right;
@@ -583,11 +601,11 @@ namespace algo {
         while (infile >> a) {
             insert_key(a);
         }
-//        while (getline(infile, line)) {
-////            cout << line << endl;
-//            if (!line.empty())
-//            insert_key(line);
-//        }
+       // while (getline(infile, line)) {
+       //     cout << line << endl;
+       //     if (!line.empty())
+       //     insert_key(line);
+       // }
     }
 
     template<typename T>

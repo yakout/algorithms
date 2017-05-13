@@ -17,11 +17,12 @@ namespace algo {
         long long int dict_size;
 
     public:
-        dictionary(): dict_size(0), _dictionary() {};
+        dictionary(): _dictionary(), dict_size(0) {};
         ~dictionary() {};
         void load(std::string path);
         long long int size();
         bool insert(std::string word);
+        int height();
         bool lookup(std::string word);
         bool remove(std::string word);
         void print_statistics();
@@ -49,8 +50,11 @@ namespace algo {
     }
 
     bool dictionary::insert(std::string word) {
-        dict_size++;
-        return _dictionary.insert_key(word);
+        bool return_value = _dictionary.insert_key(word);
+        if (return_value) {
+            dict_size++;
+        }
+        return return_value;
     }
 
     bool dictionary::lookup(std::string word) {
@@ -58,12 +62,23 @@ namespace algo {
     }
 
     bool dictionary::remove(std::string word) {
-        dict_size--;
-        return _dictionary.delete_key(word);
+        bool return_value = _dictionary.delete_key(word);
+        if (return_value) {
+            dict_size--;
+        } else {
+            cout << "cant find key: " << word << endl;
+            cout << lookup(word) << endl;
+            return false;
+        }
+        return return_value;
     }
 
     long long int dictionary::size() {
         return dict_size;
+    }
+
+    int dictionary::height() {
+        return _dictionary.height();
     }
 
     void dictionary::print_statistics() {

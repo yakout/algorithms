@@ -4,16 +4,15 @@
 
 #include <iostream>
 #include <vector>
-#include "heap.h"
-#include "bubble_sort.h"
-#include "merge_sort.h"
-#include "insertion_sort.h"
-#include "selection_sort.h"
-#include "quick_sort.h"
+#include "data_structures/heap.h"
+#include "sorting_algorithms/bubble_sort.h"
+#include "sorting_algorithms/merge_sort.h"
+#include "sorting_algorithms/insertion_sort.h"
+#include "sorting_algorithms/selection_sort.h"
+#include "sorting_algorithms/quick_sort.h"
 #include <chrono>
-#include "avl_tree.h"
-// #include "binary_tree_ascii.h"
-#include "dictionary.h"
+#include "data_structures/avl_tree.h"
+#include "data_structures/dictionary.h"
 
 
 
@@ -29,7 +28,7 @@ using namespace algo;
  * demo
  */
 int main(int argc, char *argv[]) {
-    vector<int> v {3, 5, 9, 6, 8, 20, 10, 12, 18, 9};
+    // vector<int> v {3, 5, 9, 6, 8, 20, 10, 12, 18, 9};
 ////    Heap<int> heap1;
 //    Heap<int> heap2(v);
 ////    heap1.build_max_heap(vector<int>{4, 1, 3, 2, 16, 9, 10, 14, 8, 7});
@@ -91,21 +90,26 @@ int main(int argc, char *argv[]) {
     // test.insert_key(24);
     // test.insert_key(76);
     // test.insert_key(51);
-    // test.insert_key(1);
-    // test.insert_key(2);
-    // test.insert_key(3);
-    // test.insert_key(4);
-    // test.insert_key(6);
-    // test.insert_key(7);
-    // test.insert_key(8);
-    // test.insert_key(9);
-    // test.insert_key(10);
-    // test.insert_key(11);
-    // test.insert_key(12);
-    // test.insert_key(13);
-    // test.insert_key(17);
-    // test.insert_key(16);
-    // test.insert_key(14);
+    test.insert_key(1);
+    test.insert_key(2);
+    test.insert_key(3);
+    test.insert_key(4);
+    test.insert_key(5);
+    test.insert_key(6);
+    test.insert_key(7);
+    test.insert_key(8);
+    test.insert_key(9);
+    test.insert_key(10);
+    test.insert_key(11);
+    test.insert_key(12);
+    test.insert_key(13);
+    test.insert_key(14);
+    test.insert_key(15);
+    test.insert_key(16);
+    test.insert_key(17);
+    test.insert_key(18);
+    test.insert_key(19);
+    test.insert_key(20);
 
 
     // // screen shot 2
@@ -114,30 +118,28 @@ int main(int argc, char *argv[]) {
 //    auto t2 = std::chrono::high_resolution_clock::now();
 
 
+    // dictionary dict;
 
-    test.insert_key(13);
-    test.insert_key(8);
-    test.insert_key(5);
-    test.insert_key(9);
-    test.insert_key(4);
-    test.insert_key(6);
-    test.insert_key(12);
-    test.insert_key(2);
-    test.insert_key(1);
-    test.insert_key(3);
-
-
-    cout << test.lookup(0) << endl;
-    cout << test.lookup(11) << endl;
-    cout << test.lookup(20) << endl;
-
-
-    print_ascii_node(test.get_tree());
-
+    // dict.load("/Users/nesmayakout/Desktop/Lab2/TestCases/dictionary.txt");
+    // cout << dict.size() << endl;
+    // cout << dict.height() << endl;
 
     // ifstream delet_infile("/Users/nesmayakout/Desktop/Lab2/TestCases/deletions.txt");
-    // ifstream dict_infile("/Users/nesmayakout/Desktop/Lab2/TestCases/dictionary.txt");
-    // ifstream query_infile("/Users/nesmayakout/Desktop/Lab2/TestCases/queries.txt");
+
+    // string line1;
+    // int flag = 0;
+    // while (getline(delet_infile, line1)) {
+    //     dict.remove(line1);
+    // }
+
+    // cout << dict.size() << endl;
+    // cout << dict.height() << endl;
+    // cout << "flag = " << flag;
+
+    print_ascii_node(test.get_tree());
+    cout <<  "height = " << test.height() << endl;
+
+
 
 
 //

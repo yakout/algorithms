@@ -10,7 +10,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <algorithm>
-#include "avl_tree.h"
+#include "data_structures/avl_tree.h"
 #include <stdio.h>
 
 
