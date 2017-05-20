@@ -4,7 +4,9 @@
 #include <iostream>
 #include <vector>
 #include <string.h>
+
 namespace algo {
+    
     using namespace std;
         /**
          * binary heap data structure

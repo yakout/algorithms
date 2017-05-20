@@ -16,6 +16,7 @@
  *
  * 
  * This class it based on rooted tree implementation.
+ *
  * 
  */
 
@@ -105,4 +106,4 @@ namespace algo {
 
 }
 
-#endif
+#endif // ALGORITHMS_DISJOINT_SET_H__
