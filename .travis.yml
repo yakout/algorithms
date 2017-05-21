@@ -4,4 +4,4 @@ compiler:
     - gcc
     - g++
 script:
-    - cmake --build ./cmake-build-debug --target algorithms -- -j
+    - make
