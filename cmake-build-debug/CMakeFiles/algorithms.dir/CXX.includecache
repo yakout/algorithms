@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/data_structures/perfect_hash.h
+data_structures/universal_hash.h
+-
+fstream
+-
+iostream
+-
+set
+-
+vector
+-
+
+../include/data_structures/universal_hash.h
+cmath
+-
+random
+-
+
+/Users/nesmayakout/CLionProjects/algorithms/src/hashing_driver.cpp
+iostream
+-
+data_structures/perfect_hash.h
+-
+
