@@ -18,7 +18,7 @@ namespace algo {
 	class perfect_hash {
 	private:
 		struct slot_lv2 {
-			int collisions = 0; 
+			int collisions = 0;
 			T value;
 			int key;
 		};
@@ -74,20 +74,33 @@ namespace algo {
 		 */
 		T operator[](int key) {
 			slot_lv1* slot1 = primary_hash_table[uhf->hash(key)];
-			if (slot1->collisions > 1) {
+			if (slot1 == nullptr) {
+				throw "key not found";
+			}
+
+			// search in level 1
+			if (slot1->key == key) {
+				return slot1->value;
+			} else if (slot1->collisions > 1) {
+				// search in level two
+				if (slot1->secondry_hash_table == nullptr) {
+					throw "key not found";	
+				}
 				slot_lv2* slot2 = slot1->secondry_hash_table[slot1->uhf->hash(key)];
 				if (slot2->key == key) {
 					return slot2->value;
 				}
-			} else if (slot1->key == key) {
-				return slot1->value;
 			}
-
 			throw "key not found";
 		}
 
 		/**
 		 * load static keys from file.
+		 * 
+		 * NOTE: the file only contains keys, there is no values so i also put the keys as values
+		 * just to pass the TA test cases -__-
+		 * the implementation will change a little to handle the insertion of (key, value) pair.
+		 * 
 		 * @param file_name full file path.
 		 * @param _size size of keys in file.
 		 */
@@ -165,16 +178,19 @@ namespace algo {
 		}
 
 		void init_lv1(int keys[]) {
-			primary_hash_table = new slot_lv1 *[table_size];
+			primary_hash_table = new slot_lv1 *[table_size] {nullptr};
 			int key;
 			// std::cout << size << std::endl;
-	        for (int i = 0; i < keys_size; ++i) {;
+	        for (int i = 0; i < keys_size; ++i) {
 	        	// std::cout << i << std::endl;
 	        	key = keys[i];
 	        	// std::cout << uhf->hash(key) << std::endl;
 	        	slot_lv1* current_slot = primary_hash_table[uhf->hash(key)];
+	        	// std::cout << i << std::endl;
 	        	if (current_slot != nullptr) {
+	        		// std::cout << "?\n";
 	        		current_slot->collisions++;
+	        		// std::cout << "!\n";
 	        		// store keys that cause collisions in temp vector for later use in level 2.
 	        		current_slot->temp_keys.push_back(key);
 	        		if (key > current_slot->max) {
@@ -199,24 +215,6 @@ namespace algo {
 	        		throw "bad things is happening.";
 	        	}
 	        }
-		}
-
-		/**
-		 * test the condition that sum of collisions square < constant * size.
-		 * @return true if the condition is true.
-		 */
-		bool test_condition() {
-			int sum_of_squares = 0;
-			for (int i = 0; i < table_size; ++i) {
-				if (primary_hash_table[i] != nullptr) {
-					sum_of_squares += primary_hash_table[i]->collisions * primary_hash_table[i]->collisions;
-				} 
-			}
-			std::cout << "sum_of_squares = " << sum_of_squares << std::endl;
-			if (sum_of_squares <= constant * keys_size) {
-				return true;
-			}
-			return false;
 		}
 
 		void init_lv2() {
@@ -315,7 +313,7 @@ namespace algo {
 			for (int i = 0; i < table_size; ++i) {
 				if (primary_hash_table[i] != nullptr) {
 					if (primary_hash_table[i]->collisions > 1) {
-						std::cout << primary_hash_table[i]->collisions << std::endl;
+						// std::cout << primary_hash_table[i]->collisions << std::endl;
 						return true;
 					}
 
@@ -328,6 +326,24 @@ namespace algo {
 						}
 					}
 				}
+			}
+			return false;
+		}
+
+		/**
+		 * test the condition that sum of collisions square < constant * size.
+		 * @return true if the condition is true.
+		 */
+		bool test_condition() {
+			int sum_of_squares = 0;
+			for (int i = 0; i < table_size; ++i) {
+				if (primary_hash_table[i] != nullptr) {
+					sum_of_squares += primary_hash_table[i]->collisions * primary_hash_table[i]->collisions;
+				} 
+			}
+			std::cout << "sum_of_squares = " << sum_of_squares << std::endl; 
+			if (sum_of_squares < constant * keys_size) {
+				return true;
 			}
 			return false;
 		}
@@ -346,12 +362,13 @@ namespace algo {
 				} else {
 					slot_lv1* slot = new slot_lv1();
 					slot->key = key;
+					slot->value = key;
 					slot->collisions++;
 					primary_hash_table[uhf->hash(key)] = slot;
 				}
 			}
 
-			if (!test_condition()) {
+			if (check_collisions()) {
 	        	uhf->regenerate_hash();
 	        	if (uhf->get_rebuild_times() < 4) {
 					load(keys);
@@ -359,15 +376,7 @@ namespace algo {
 	        		throw "bad things is happening.";
 	        	}
 	        }
-
-			// for (int i = 0; i < table_size; ++i) {
-			// 	if (primary_hash_table[i] != nullptr) {
-			// 		std::cout << "i= " << i << " collisions: " << primary_hash_table[i]->collisions
-			// 					<< " | in: " << primary_hash_table[i]->key << std::endl;
-			// 	}
-			// }
 		}
-		
 	};
 
 }

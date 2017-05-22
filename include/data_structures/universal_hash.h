@@ -60,7 +60,7 @@ namespace algo {
 			int max = std::max(max_element, (int)size);
 			prime = generate_prime(max);
 			a = generate_random(1, prime - 1);
-			b = generate_random(1, prime - 1);
+			b = generate_random(0, prime - 1);
 		}
 
 		/**
