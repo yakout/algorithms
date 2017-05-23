@@ -4,7 +4,7 @@ CPP=g++
 AR=ar
 RANLIB=ranlib
 CFLAGS= -g -Wall -Wno-unused-function
-C11FLAGS= -g -Wall -Wno-unused-function -std=c++11
+C11FLAGS= -g -Wall -Wno-unused-function -std=c++0x
 SRCDIR = ./src
 INCLUDEDIR = -I./include -I.
 DEPS = 
