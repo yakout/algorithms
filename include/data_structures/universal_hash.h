@@ -42,13 +42,19 @@ namespace algo {
 		/**
 		 * number of times required to rebuild the hash table.
 		 */
-		int rebuild_counter = 0;
+		int rebuild_counter;
+		/**
+		 * for matrix method.
+		 */
+		int h;
 
 	public:
 
 		universal_hash(int _size): size(_size) {
+			rebuild_counter = 0;
 		}
 
+		
 		universal_hash() {
 		}
 
@@ -77,6 +83,12 @@ namespace algo {
 		 */
 		void generate_matrix() {
 			// todo implement the matrix method
+			// 
+			// psuedo code:
+			// int b = std::ceil(std::log(size))
+			// size = std::pow(2, b);
+			// h = generate_random(0, b);
+			// h(x) = h | x
 		}
 
 	private:

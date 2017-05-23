@@ -18,22 +18,29 @@ namespace algo {
 	class perfect_hash {
 	private:
 		struct slot_lv2 {
-			int collisions = 0;
+		public:
+			int collisions;
 			T value;
 			int key;
+
+			slot_lv2() {
+				collisions = 0;
+			}
 		};
 
 		struct slot_lv1 {
+		public:
 			slot_lv2** secondry_hash_table;
-			int collisions = 0;
+			int collisions;
 			T value; // todo 
 			int key;
 			universal_hash* uhf;
 			std::vector<int> temp_keys;
-			int max = 0;
+			int max;
 
 			slot_lv1(): temp_keys() {
-
+				max = 0;
+				collisions = 0;
 			}
 
 			~slot_lv1() {
@@ -49,7 +56,7 @@ namespace algo {
 		/**
 		 * maximum key value.
 		 */
-		int max = 0;
+		int max;
 		/**
 		 * size of hash table M.
 		 */
@@ -60,7 +67,7 @@ namespace algo {
 		int keys_size;
 	public:
 		perfect_hash() {
-
+			max = 0;
 		}
 
 		~perfect_hash() {
@@ -77,7 +84,7 @@ namespace algo {
 			if (slot1 == nullptr) {
 				throw "key not found";
 			}
-
+			
 			// search in level 1
 			if (slot1->key == key) {
 				return slot1->value;
@@ -222,16 +229,6 @@ namespace algo {
 				if (primary_hash_table[i] != nullptr && primary_hash_table[i]->collisions != 1) {
 					// std::cout << "i= " << i << " collisions: " << primary_hash_table[i]->collisions
 					// 			<< " | in: " << primary_hash_table[i]->key << std::endl;
-					
-					// if (primary_hash_table[i]->collisions == 1) {
-					// 	continue;
-					// }
-					
-					// std::cout << " --------- " << std::endl;
-					// std::cout << "i " << i << std::endl;
-					// std::cout << "key " << primary_hash_table[i]->key << std::endl;
-					// std::cout << "collisions " << primary_hash_table[i]->collisions << std::endl;
-
 					init_lv2_slot(primary_hash_table[i]);
 				} else {
 					// no keys hashed to this slot, or there is no collision in this slot and 
@@ -246,51 +243,21 @@ namespace algo {
 			int size_2 = (slot->collisions) * (slot->collisions);
 			slot->secondry_hash_table = new slot_lv2 *[size_2] { nullptr };
 
-			for (int i = 0; i < size_2; ++i)
-			{
-				if (slot->secondry_hash_table[i] != nullptr) {
-					// slot->secondry_hash_table[i] = nullptr;
-				}
-			}
-
-			for (int i = 0; i < size_2; ++i)
-			{
-				if (slot->secondry_hash_table[i] != nullptr) {
-					std::cout << "555555555555555 khkhkhkhkhhkhkhkhkh خخخخخخخخ" << std::endl;
-				}
-			}
-
 			slot->uhf = new universal_hash(size_2);
-			// std::cout << "max " << slot->max << std::endl;
-			// std::cout << "collisions " << slot->collisions << std::endl;
-			// std::cout << "temp_keys " << slot->temp_keys.size() << std::endl;
 			slot->uhf->generate_hash(slot->max);
 
 			for (int i = 0; i < slot->temp_keys.size(); ++i) {
 				int key  = slot->temp_keys[i];
-				// slot_lv2* slot2 = new slot_lv2();
-				// slot2->key = key;
-				// slot2->value = key;
-				// slot2->collisions++;
-				// if (slot2->collisions > 1) {
-				// 	std::cout << slot2->collisions << std::endl;
-				// }
-				// slot->secondry_hash_table[slot->uhf->hash(key)] = slot2;
-
 				slot_lv2* current_slot = slot->secondry_hash_table[slot->uhf->hash(key)];
-				// std::cout << "i " << i << std::endl;
-				// std::cout << "key " << key << std::endl;
-				// std::cout << "hash: "<< slot->uhf->hash(key) << std::endl;
 	        	if (current_slot != nullptr) {
-	    //     		std::cout << "i " << i << std::endl;
-					// std::cout << "key " << key << std::endl;
-					// std::cout << "hash: "<< slot->uhf->hash(key) << std::endl;
-
 	        		current_slot->collisions++;
 	        		if (current_slot->collisions > 1) {
-						// std::cout << current_slot->collisions << std::endl;
+						std::cout << "collisions in level two " << current_slot->collisions << std::endl;
 					}
-					// init_lv2_slot(slot);
+					static int rehash_times = 0;
+					rehash_times++;
+					if (rehash_times > 10) return;
+					init_lv2_slot(slot);
 	        	} else {
 	        		// std::cout << "debug2" << std::endl;
 	        		slot_lv2* slot2 = new slot_lv2();
