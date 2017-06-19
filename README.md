@@ -6,5 +6,5 @@ Different algorithms and data structures implementaions.
 ## TODO ##
 - [ ] Bionomial Heap.
 - [ ] Btree.
-- [ ] Graph Alogithms.
+- [ ] Graph Algorithms.
 - [ ] Some improvments to current implementations.
